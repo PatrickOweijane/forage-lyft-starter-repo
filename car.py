@@ -1,4 +1,3 @@
-from numpy import isin
 from engine.engine import Engine
 from battery.battery import Battery
 
