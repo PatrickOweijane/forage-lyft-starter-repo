@@ -1,15 +1,20 @@
-from abc import ABC
-
-from car import Car
+from engine.engine import Engine
 
 
-class SternmanEngine(Car, ABC):
-    def __init__(self, last_service_date, warning_light_is_on):
-        super().__init__(last_service_date)
-        self.warning_light_is_on = warning_light_is_on
+class SternmanEngine(Engine):
+    def __init__(self, warning_light_on):
+        self._warning_light_on = warning_light_on
 
-    def engine_should_be_serviced(self):
-        if self.warning_light_is_on:
-            return True
+    def needs_service(self):
+        return self._warning_light_on
+
+    @property
+    def warning_light_on(self):
+        return self._warning_light_on
+
+    @warning_light_on.setter
+    def warning_light_on(self, new_warning_light_on):
+        if isinstance(new_warning_light_on, bool):
+            self._warning_light_on = new_warning_light_on
         else:
-            return False
+            print('Please enter a valid boolean')

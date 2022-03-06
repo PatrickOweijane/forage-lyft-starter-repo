@@ -1,13 +1,32 @@
-from abc import ABC
-
-from car import Car
+from engine.engine import Engine
 
 
-class CapuletEngine(Car, ABC):
-    def __init__(self, last_service_date, current_mileage, last_service_mileage):
-        super().__init__(last_service_date)
-        self.current_mileage = current_mileage
-        self.last_service_mileage = last_service_mileage
+class CapuletEngine(Engine):
+    def __init__(self, last_service_mileage, current_mileage):
+        self._last_service_mileage = last_service_mileage
+        self._current_mileage = current_mileage
 
-    def engine_should_be_serviced(self):
-        return self.current_mileage - self.last_service_mileage > 30000
+    def needs_service(self):
+        return self._current_mileage - self._last_service_mileage > 30000
+
+    @property
+    def current_mileage(self):
+        return self._current_mileage
+
+    @current_mileage.setter
+    def current_mileage(self, new_current_mileage):
+        if isinstance(new_current_mileage, int):
+            self._current_mileage = new_current_mileage
+        else:
+            print('Please enter a valid integer')
+
+    @property
+    def last_service_mileage(self):
+        return self._last_service_mileage
+
+    @last_service_mileage.setter
+    def last_service_mileage(self, new_last_service_mileage):
+        if isinstance(new_last_service_mileage, int):
+            self._last_service_mileage = new_last_service_mileage
+        else:
+            print('Please enter a valid integer')

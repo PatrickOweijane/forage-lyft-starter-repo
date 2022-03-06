@@ -130,3 +130,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Extra files
+t.py
+
+# Extra folders
+Part1 - UML/
